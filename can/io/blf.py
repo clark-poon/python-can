@@ -465,7 +465,7 @@ class BLFWriter(FileIOMessageWriter):
                 0,  # flags
                 0,  # ecc
                 0,  # position
-                len2dlc(msg.dlc),
+                msg.dlc,
                 0,  # frame length
                 arb_id,
                 0,  # ext flags
@@ -481,7 +481,7 @@ class BLFWriter(FileIOMessageWriter):
             data = CAN_FD_MSG_STRUCT.pack(
                 channel,
                 flags,
-                len2dlc(msg.dlc),
+                msg.dlc,
                 arb_id,
                 0,
                 0,

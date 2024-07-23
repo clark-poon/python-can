@@ -27,6 +27,7 @@ from parameterized import parameterized
 
 import can
 from can.io import blf
+from can.util import len2dlc
 from .data.example_data import (
     TEST_COMMENTS,
     TEST_MESSAGES_BASE,
@@ -563,7 +564,7 @@ class TestAscFileFormat(ReaderWriterTest):
                 arbitration_id=0x4EE,
                 is_extended_id=False,
                 channel=3,
-                dlc=64,
+                dlc=len2dlc(64),
                 data=[0xA1, 2, 3, 4] + 59 * [0] + [0x64],
                 is_fd=True,
                 error_state_indicator=True,
@@ -572,7 +573,7 @@ class TestAscFileFormat(ReaderWriterTest):
                 timestamp=31.506898,
                 arbitration_id=0x1C4D80A7,
                 channel=3,
-                dlc=64,
+                dlc=len2dlc(64),
                 data=[0xB1, 2, 3, 4] + 59 * [0] + [0x64],
                 is_fd=True,
                 bitrate_switch=True,
@@ -709,7 +710,7 @@ class TestBlfFileFormat(ReaderWriterTest):
             arbitration_id=0x4444444,
             is_extended_id=False,
             channel=0x1110,
-            dlc=64,
+            dlc=len2dlc(64),
             is_fd=True,
             bitrate_switch=True,
             error_state_indicator=True,
@@ -726,7 +727,7 @@ class TestBlfFileFormat(ReaderWriterTest):
             is_extended_id=False,
             is_remote_frame=True,
             channel=0x10,
-            dlc=64,
+            dlc=len2dlc(64),
             is_fd=True,
             is_rx=False,
             bitrate_switch=True,
