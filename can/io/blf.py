@@ -21,7 +21,7 @@ from typing import Any, BinaryIO, Generator, List, Optional, Tuple, Union, cast
 
 from ..message import Message
 from ..typechecking import StringPathLike
-from ..util import channel2int, dlc2len, len2dlc
+from ..util import channel2int, len2dlc
 from .generic import BinaryIOMessageReader, FileIOMessageWriter
 
 TSystemTime = Tuple[int, int, int, int, int, int, int, int]
@@ -315,7 +315,7 @@ class BLFReader(BinaryIOMessageReader):
                     is_rx=not bool(flags & DIR),
                     bitrate_switch=bool(fd_flags & 0x2),
                     error_state_indicator=bool(fd_flags & 0x4),
-                    dlc=dlc2len(dlc),
+                    dlc=dlc,
                     data=can_data[:valid_bytes],
                     channel=channel - 1,
                 )
@@ -347,7 +347,7 @@ class BLFReader(BinaryIOMessageReader):
                     is_rx=not direction,
                     bitrate_switch=bool(fd_flags & 0x2000),
                     error_state_indicator=bool(fd_flags & 0x4000),
-                    dlc=dlc2len(dlc),
+                    dlc=dlc,
                     data=data[pos : pos + valid_bytes],
                     channel=channel - 1,
                 )
