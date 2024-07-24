@@ -10,6 +10,8 @@ from copy import deepcopy
 from math import isinf, isnan
 from typing import Optional
 
+from can.util import dlc2len
+
 from . import typechecking
 
 
@@ -132,7 +134,7 @@ class Message:  # pylint: disable=too-many-instance-attributes; OK for a datacla
         field_strings.append(f"DL: {len(self.data):2d}")
         data_strings = []
         if self.data is not None:
-            for index in range(0, min(self.dlc, len(self.data))):
+            for index in range(0, min(dlc2len(self.dlc), len(self.data))):
                 data_strings.append(f"{self.data[index]:02x}")
         if data_strings:  # if not empty
             field_strings.append(" ".join(data_strings).ljust(24, " "))
