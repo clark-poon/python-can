@@ -131,6 +131,8 @@ class Message:  # pylint: disable=too-many-instance-attributes; OK for a datacla
 
         field_strings.append(flag_string)
 
+        field_strings.append(f"DLC: {self.dlc:2d}")
+
         field_strings.append(f"DL: {len(self.data):2d}")
         data_strings = []
         if self.data is not None:
